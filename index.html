@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>太保旅遊去首頁</title>
+<link rel="stylesheet" href="commonstyle.css">
+</head>
+<style>
+.hero {
+    height: 450px;       /* 1. 在這裡控制高度 (您可以自由改成 200px 或 300px) */
+    width: 100%;         /* 確保容器橫向滿版 */
+    overflow: hidden;    /* 確保圖片超出範圍的部分被隱藏 */
+    position: relative;  /* 讓內部元素定位 */
+    padding: 0;          /* 確保沒有內距造成留白 */
+    margin: 0;
+}
+.hero img {
+    width: 100%;         /* 2. 強制圖片寬度跟螢幕一樣寬 (解決左右空白) */
+    height: 100%;        /* 強制圖片高度跟容器一樣高 */
+    
+    
+    object-fit: cover;   
+    /* 讓圖片像背景一樣填滿，會自動裁切掉多餘部分，保持圖片不變形 */
+    /* 進階調整：如果您覺得人物的頭被切掉了，可以調整下方這行 */
+    object-position: center 30%; /* center 水平置中，20% 代表顯示偏上方的區域 (0%是頂部, 50%是中間, 100%是底部) */
+}
+.mascot {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.mascot img {
+    width: 1600px;
+}
+
+/* 輪播圖外框：限制大小並隱藏溢出的圖片 */
+.carousel-container {
+    width: 89%;           /* 輪播圖寬度，可自行調整 (例如 800px) */
+    max-width: 1200px;
+    margin: 40px auto;    /* 讓輪播圖置中 */
+    overflow: hidden;     /* 關鍵！把跑出去的圖片藏起來 */
+    border-radius: 12px;
+    overflow: hidden; /* 關鍵：看不到第 4 張圖 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* 輪播圖軌道：用來裝所有圖片的長條 */
+.carousel-track {
+    display: flex;        /* 讓圖片橫向排列 */
+    transition: transform 0.8s ease-in-out; /* 滑動動畫效果 */
+
+}
+
+/* 單個輪播項目 */
+.carousel-item {
+    min-width: 50.00%; 
+    min-width: 33.333%;
+    box-sizing: border-box; /* 確保 padding 不會撐大寬度 */
+    padding: 0 15px;        /* 圖片左右的間距 */
+    position: relative;
+}
+
+/* 確保圖片本身的高度一致 */
+.carousel-item img {
+    width: 100%;
+    height: 300px;       /* 高度可以稍微調小一點，視覺比例比較好 */
+    object-fit: cover;
+    border-radius: 4px;  /* 加上圓角比較好看 */
+}
+
+/* 響應式設計：手機版還是要變回一張，不然太擠了 (選用) */
+@media (max-width: 768px) {
+    .carousel-item {
+        min-width: 100%;
+    }
+}
+
+/* 圖片上的文字說明 (選用) */
+.carousel-item .caption {
+    position: absolute;
+    bottom: 0;
+    left: 15px;      /* 配合 padding */
+    right: 15px;     /* 配合 padding */
+    background: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+    color: white;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 18px;
+    font-size: 22px;      /* 字體放大 */
+    font-weight: bold;    /* 字體加粗 */
+    letter-spacing: 2px;  /* 字距拉開，不擁擠 */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* 左右按鈕樣式 */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }   
+.video-area {
+    width: 100%;
+    max-width: 1000px; /* 限制影片不要鋪滿整個 1300px，視覺較舒服 */
+    margin: 30px auto; /* 上下留白，左右置中 */
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    line-height: 0; /* 消除影片下方細微白邊 */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.video-area video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+</style>
+<script>
+window.addEventListener('load', () => {
+    // 針對頁面上所有的輪播圖執行
+    const containers = document.querySelectorAll('.carousel-container');
+    
+    containers.forEach(container => {
+        const track = container.querySelector('.carousel-track');
+        const items = Array.from(track.querySelectorAll('.carousel-item'));
+        const itemsToShow = 3;
+        let index = 0;
+
+        // 自動複製前三張，達成無縫循環
+        items.slice(0, itemsToShow).forEach(item => {
+            const clone = item.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        const totalItemsWithClones = track.querySelectorAll('.carousel-item').length;
+
+        function play() {
+            index++;
+            track.style.transition = "transform 0.6s ease-in-out";
+            track.style.transform = `translateX(-${index * (100 / itemsToShow)}%)`;
+
+            // 當滑動到複製的圖時，瞬間歸零
+            if (index >= items.length) {
+                setTimeout(() => {
+                    track.style.transition = "none";
+                    index = 0;
+                    track.style.transform = `translateX(0)`;
+                }, 600);
+            }
+        }
+
+        setInterval(play, 3000);
+    });
+});
+</script>
+
+<body>
+<div class="sticky-wrapper">   
+    <div class="top-bar">
+        <a href="#">回最上方</a>
+    </div>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="吉祥物.jpg" alt="吉祥物" style="height: 80px; margin-right: 10px; margin-bottom: 5px;">  
+        <h2 style="font-size: 28px;">太保旅遊</h2>
+    </div>   
+    <nav>
+        <ul>
+            <li>太保簡介
+                <div class="dropdown">
+                    <a href="這裡貼分頁">歷史文化</a>
+                    <a href="這裡貼分頁">發展</a>
+                </div>
+            </li>
+            <li>
+                <a href="#" style="color:white; text-decoration:none;">太保怎麼玩</a>
+            </li>
+            <li>
+              <a href="這裡貼分頁" style="color:white; text-decoration:none;">
+              地理位置
+              </a>
+            </li>
+            <li>傳說與民俗
+                <div class="dropdown">
+                    <a href="這裡貼分頁">朱一貴起事</a>
+                    <a href="這裡貼分頁">太保里火燈夜巡</a>
+                </div>
+            </li>
+            <li>
+              <a href="這裡貼分頁" style="color:white; text-decoration:none;">
+              預算估計
+              </a>
+            </li>       
+            <li>宗教信仰
+                <div class="dropdown">
+                    <a href="這裡貼分頁">七星娘娘信仰</a>
+                    <a href="這裡貼分頁">牛將軍廟</a>
+
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+</div>  
+<div id="main" class="hero">
+    <img src="001.png" alt="主葉卷軸式大圖">
+</div>
+
+<div class="carousel-container">
+    <div class="carousel-track">
+        
+        <div class="carousel-item">
+            <img src="故宮南.jpg" alt="圖片1">
+            <div class="caption">國立故宮南院</div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="福濟宮.jpg" alt="圖片2">
+            <div class="caption">福濟宮</div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="咖啡工廠.jpg" alt="圖片3">
+            <div class="caption">咖啡工廠</div>
+        </div>
+        
+        <div class="carousel-item">
+            <img src="糖廠.jpg" alt="圖片4">
+            <div class="caption">糖廠</div>
+        </div>
+
+    </div>
+</div>
+<section class="video-section" style="background-color: #fff; padding: 60px 0;">
+    <div class="quiz-container">
+        <div class="section-title">
+            <h2>影音導覽：本地導覽影片</h2>
+        </div>
+
+        <div class="video-area">
+            <video controls poster="video-cover.jpg">
+                <source src="1134541.mp4" type="video/mp4">
+                您的瀏覽器不支援 HTML5 影片播放。
+            </video>
+        </div>
+        
+        <p style="text-align: center; color: #666; margin-top: 20px;">
+            點擊播放鍵，觀看太保市精彩導覽。
+        </p>
+    </div>
+</section>
+
+<footer>
+    <h3>Contact Us</h3>
+    <p>電話：05-2732892 / 傳真：05-2732893</p>
+    <p>Email：mis@mail.ncyu.edu.tw</p>
+    <p>地址：(600)嘉義市新民路580號A棟3樓</p>
+</footer>
+
+<script>
+function openExternal() {
+    window.open("外部資訊的網址", "_blank");
+}
+</script>
+
+</body>
+</html>
