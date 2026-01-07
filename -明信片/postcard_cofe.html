@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>獲得明信片吧 - 太保旅遊去</title>
+    <link rel="stylesheet" href="commonstyle.css">
+    <style>
+        /* 這裡只放置問答遊戲專用的額外樣式，不影響您的 style.css */
+        .quiz-container { max-width: 90%; margin: 0 auto; padding: 40px 20px; }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .quiz-header h1 { color: #8B5A2B; font-size: 1.8rem; margin-bottom: 10px; }
+        
+        /* 問答內容佈局 */
+        .quiz-item { display: flex; gap: 30px; margin-bottom: 60px; align-items: stretch; }
+        .quiz-image-box { flex: 1; background-color: #8D6E63; min-height: 300px; border-radius: 4px; overflow: hidden; }
+        .quiz-image-box img { width: 100%; height: 100%; object-fit: cover; }
+        .quiz-content { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        
+        /* 題目與選項顏色 */
+        .quiz-question-box { background-color: #8B5A2B; color: white; padding: 15px; border-radius: 4px; font-weight: bold; }
+        .quiz-options { list-style: none; padding: 0; }
+        .quiz-options::before { content: "選項"; display: inline-block; background-color: #D7CCC8; color: #8B5A2B; padding: 5px 15px; margin-bottom: 10px; font-weight: bold; }
+        
+        .option-item { background-color: #8B5A2B; color: white; padding: 12px 20px; cursor: pointer; border-radius: 4px; margin-bottom: 12px; transition: 0.3s; }
+        .option-item:hover { opacity: 0.8; transform: translateX(5px); }
+        
+        /* 狀態樣式 */
+        .option-item.is-selected { background-color: #ffd6a0 !important; color: #8B5A2B !important; font-weight: bold; }
+        .option-item.is-wrong { background-color: #EF5350 !important; }
+        .option-item.is-correct {
+            background-color: #4CAF50 !important;
+            color: white !important;
+        }
+        .feedback-area { text-align: center; min-height: 40px; font-weight: bold; }
+        .feedback-text { display: none; }
+        .success { color: #2E7D32; }
+        
+        .btn-submit { background-color: #8D6E63; color: white; border: none; padding: 12px 60px; cursor: pointer; border-radius: 4px; display: block; margin: 0 auto; font-size: 1.1rem; }
+        
+        /* 彈窗 */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 2000; }
+        .postcard-modal { background: white; padding: 20px; border-radius: 8px; position: relative; width: 400px; text-align: center; }
+        .btn-close { position: absolute; top: 10px; right: 10px; cursor: pointer; font-size: 20px; border: none; background: none; }
+
+        @media (max-width: 768px) { .quiz-item { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+<div class="sticky-wrapper">   
+    <div class="top-bar">
+        <a href="../首頁/index.html">回首頁</a><a href="#">回最上方</a>
+    </div>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="ExamPic.png" alt="吉祥物" style="height: 80px; margin-right: 10px; margin-bottom: 5px;">  
+        <h2 style="font-size: 28px;">太保旅遊</h2>
+    </div>   
+    <nav>
+        <ul>
+            <li>
+                <a href="../太保簡介/taibaointro.html" style="color:white; text-decoration:none;">
+                太保簡介</a>
+            </li>
+            <li>
+                <a href="../太保怎麼玩/h2ptaibao.html" style="color:white; text-decoration:none;">
+                太保怎麼玩</a>
+            </li>
+            <li>
+              <a href="../地理位置/location.html" style="color:white; text-decoration:none;">
+              地理位置</a>
+            </li>
+            <li>
+                <a href="../傳說與民俗/taibaotraditions.html" style="color:white; text-decoration:none;">
+                傳說與民俗</a>
+            </li>
+            <li>
+              <a href="../預算估計/budget.html" style="color:white; text-decoration:none;">
+              預算估計</a>
+            </li>       
+            <li>
+                <a href="../宗教信仰/taibaogod.html" style="color:white; text-decoration:none;">
+                宗教信仰</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+</div> 
+
+    <main class="quiz-container">
+        <div class="section-title">
+            <h2>來製作明信片吧</h2>
+        </div>
+
+        <div class="quiz-header">
+            <h1>來看看你有多認識咖啡廣場吧！</h1>
+              <hr style="border: 0; height: 1px; background: #ccc; margin: 30px 0;">
+            <p><b>答對2題小問答，帶走一張專屬明信片吧～</b></p>
+        </div>
+
+      
+
+        <section class="quiz-list">
+            <article class="quiz-item" data-answer="2">
+                <div class="quiz-image-box"><img src="quiz1.jpg" alt="題目圖"></div>
+                <div class="quiz-content">
+                    <div class="quiz-question-box">哪一種咖啡烘焙程度，對身體健康較有幫助？</div>
+                    <ul class="quiz-options">
+                        <li class="option-item">深焙（烘焙時間最久）</li>
+                        <li class="option-item">極淺焙（完全不熟）</li>
+                        <li class="option-item">中淺焙到中焙 </li>
+                        <li class="option-item">所有烘焙程度都一樣</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="quiz-item" data-answer="1">
+                <div class="quiz-image-box"><img src="quiz2.jpg" alt="題目圖"></div>
+                <div class="quiz-content">
+                    <div class="quiz-question-box">想提神但又不想喝太苦的咖啡，哪個選擇比較適合</div>
+                    <ul class="quiz-options">
+                        <li class="option-item">義式濃縮（Espresso）</li>
+                        <li class="option-item">美式咖啡</li>
+                        <li class="option-item">黑到發亮的深焙咖啡 </li>
+                        <li class="option-item">完全不加水的咖啡粉</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="quiz-item" data-answer="1">
+                <div class="quiz-image-box"><img src="quiz3.jpg" alt="題目圖"></div>
+                <div class="quiz-content">
+                    <div class="quiz-question-box">下列哪一種方式，有助於避免喝咖啡造成胃不舒服</div>
+                    <ul class="quiz-options">
+                        <li class="option-item">空腹大量飲用</li>
+                        <li class="option-item">餐後喝，或搭配牛奶與食物</li>
+                        <li class="option-item">越晚喝越好</li>
+                        <li class="option-item">只喝冰咖啡</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <div class="feedback-area">
+            <p id="msg-error" class="feedback-text" style="color:#8B5A2B;">加油!只差一點點了~!</p>
+            <p id="msg-success" class="feedback-text success">恭喜~!獲得景點明信片!!</p>
+        </div>
+        
+        <button type="button" class="btn-submit" onclick="checkAnswers()">送出</button>
+        <p style="text-align:center; color:#999; font-size:0.8rem; margin-top:10px;">明信片可下載保存喔！</p>
+    </main>
+
+    <footer>
+        <div style="padding: 40px 20px;">
+            <h3>Contact Us</h3>
+            <p>地址：嘉義縣太保市太保一路1號</p>
+            <p>電話：05-123-4567 | Email: service@taibao.travel</p>
+            <p>&copy; 2024 太保旅遊去 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="postcardModal" class="modal-overlay" style="display: none;">
+    <div class="postcard-modal">
+        <button class="btn-close" onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; border: none; background: none;">&times;</button>
+        
+        <h3 style="margin-top: 20px;">您的專屬明信片</h3>
+        
+        <div style="margin: 20px 0; background:#eee; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+            <img id="postcardImage" src="postcard.jpg" alt="明信片" style="max-width:100%; height:auto; display: block;">
+        </div>
+        
+        <a id="realDownloadBtn" href="postcard.jpg" download="太保旅遊紀念明信片.jpg" class="btn-submit" style="display: inline-block; text-decoration: none; padding: 10px 30px; width: auto; background-color: #8B5A2B; color: white; border-radius: 4px;">下載明信片</a>
+    </div>
+</div>
+
+    <script>
+        // 初始化點擊事件
+document.querySelectorAll('.quiz-item').forEach(item => {
+    const options = item.querySelectorAll('.option-item');
+    
+    options.forEach((opt, idx) => {
+        opt.onclick = function() {
+            // 如果點擊的是已經選中的，就取消選取 (取消功能)
+            if (this.classList.contains('is-selected')) {
+                this.classList.remove('is-selected');
+                delete item.dataset.userChoice; 
+            } else {
+                // 清除同題目的其他選中狀態
+                options.forEach(o => o.classList.remove('is-selected', 'is-wrong', 'is-correct'));
+                this.classList.add('is-selected');
+                item.dataset.userChoice = idx; // 記錄選了第幾個
+            }
+        };
+    });
+});
+
+function checkAnswers() {
+    let score = 0;
+    const items = document.querySelectorAll('.quiz-item');
+    
+    items.forEach(item => {
+        const correctIdx = parseInt(item.dataset.answer);
+        const userChoice = item.dataset.userChoice;
+        const options = item.querySelectorAll('.option-item');
+
+        // 清除狀態並標示正確/錯誤顏色
+        options.forEach(o => o.classList.remove('is-wrong', 'is-correct'));
+
+        if (userChoice !== undefined) {
+            const userIdx = parseInt(userChoice);
+            if (userIdx === correctIdx) {
+                options[userIdx].classList.add('is-correct'); // 變綠色
+                score++;
+            } else {
+                options[userIdx].classList.add('is-wrong'); // 變紅色
+            }
+        }
+    });
+
+    // 判斷分數是否達標 (答對2題)
+    if (score >= 2) {
+        document.getElementById('msg-success').style.display = 'block';
+        document.getElementById('msg-error').style.display = 'none';
+
+        // 動態將圖片路徑賦予下載連結，確保下載目標正確
+        const imgPath = document.getElementById('postcardImage').src;
+        document.getElementById('realDownloadBtn').href = imgPath;
+
+        // 顯示彈窗
+        setTimeout(() => {
+            const modal = document.getElementById('postcardModal');
+            modal.style.display = 'flex'; // 確保使用 flex 讓它居中
+        }, 500);
+    } else {
+        document.getElementById('msg-error').style.display = 'block';
+        document.getElementById('msg-success').style.display = 'none';
+    }
+}
+
+// 關閉彈窗的函式
+function closeModal() {
+    const modal = document.getElementById('postcardModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// 點擊彈窗背景也可以關閉 (選配，增加使用者體驗)
+window.onclick = function(event) {
+    const modal = document.getElementById('postcardModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+    </script>
+</body>
+</html>

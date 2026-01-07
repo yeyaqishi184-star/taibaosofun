@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>太保旅遊去</title>
+<link rel="stylesheet" href="commonstyle.css">
+<style>
+.container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1; /* 讓內容區撐開，把 Footer 壓到底部 */
+        }
+
+nav li:hover .dropdown {
+    display: block;
+}
+.dropdown::before {
+    content: "";
+    position: absolute;
+    top: -20px; /* 向上延伸出一段透明感應區 */
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+/* --- 景點卡片 --- */
+        .attraction-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            margin-bottom: 60px;
+            gap: 40px;
+            padding: 30px; /* 增加內距讓畫面更舒服 */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .attraction-card.reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* --- 圖片區域 --- */
+        .card-image {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: center; /* 讓圖片容器置中 */
+        }
+
+        .card-image img {
+            width: 100%;
+            max-width: 400px; /* 限制圖片最大寬度，避免過大 */
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- 文字區域 --- */
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 紅色修正：標題置中 */
+        .card-title {
+            font-size: 1.5rem;
+            color: #8B5A2B;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            padding-left: 100px;
+            padding-right: 100px;
+            /* 置中關鍵設定 */
+            align-self: center; 
+            text-align: center;
+        }
+
+        /* 藍色修正：文字加粗 */
+        .card-text {
+            text-align: justify;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: #555;
+            font-weight: 700; /* 加粗設定 */
+            line-height: 1.8; /* 行距稍微加大讓粗體字更好讀 */
+            padding-right: 20px;
+        }
+
+.mascot {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.mascot img {
+    width: 1600px;
+}
+
+.section-title 
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+ footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: auto; /* 確保置底 */
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            color: #8b6b52;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 5px;
+        }    
+</style>
+</head>
+
+
+
+<body>
+<div class="sticky-wrapper">   
+    <div class="top-bar">
+        <a href="../首頁/index.html">回首頁</a><a href="#">回最上方</a>
+    </div>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="吉祥物.png" alt="吉祥物" style="height: 80px; margin-right: 10px; margin-bottom: 5px;">  
+        <h2 style="font-size: 28px;">太保旅遊</h2>
+    </div>   
+    <nav>
+        <ul>
+            <li>
+                <a href="../太保簡介/taibaointro.html" style="color:white; text-decoration:none;">
+                太保簡介</a>
+            </li>
+            <li>
+                <a href="../太保怎麼玩/h2ptaibao.html" style="color:white; text-decoration:none;">
+                太保怎麼玩</a>
+            </li>
+            <li>
+              <a href="../地理位置/location.html" style="color:white; text-decoration:none;">
+              地理位置</a>
+            </li>
+            <li>
+                <a href="../傳說與民俗/taibaotraditions.html" style="color:white; text-decoration:none;">
+                傳說與民俗</a>
+            </li>
+            <li>
+              <a href="../預算估計/budget.html" style="color:white; text-decoration:none;">
+              預算估計</a>
+            </li>       
+            <li>
+                <a href="../宗教信仰/taibaogod.html" style="color:white; text-decoration:none;">
+                宗教信仰</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+</div> 
+    <main class="container">
+        
+        <div class="section-title">
+            <h2>太保簡介</h2>
+        </div>
+
+        <article class="attraction-card">
+            <a>
+                <img src="歷史文化.png" alt="歷史文化">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">歷史文化</h3>
+                
+                <p class="card-text">
+                    太保早期為嘉南平原上的農業聚落,因地勢平坦、適合耕作而逐漸發展。城市名稱有守護地方的
+意涵,反映早期社會對秩序與安全的重視。隨著居民聚集,地方信仰與廟宇文化逐步形成,成為
+居民日常生活與情感連結的重要核心,也為太保留下深厚的人文背景。
+                </p>
+            </div>
+        </article>
+
+        <article class="attraction-card reverse">
+            <a>
+                <img src="發展.jpg" alt="發展">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">發展</h3>
+                
+                <p class="card-text">
+                    近年來,太保市因高鐵嘉義站設立及縣政中心進駐,城市機能快速成長,逐步轉型為嘉義縣的重
+要行政與交通節點。在保有農業景觀與在地生活步調的同時,也發展出較完整的公共建設與生活
+機能,呈現傳統與現代並存的城市樣貌。
+                </p>
+                
+                
+            </div>
+        </article>
+    </main>   
+
+    
+
+<footer>
+    <h3>Contact Us</h3>
+    <p>電話：05-2732892 / 傳真：05-2732893</p>
+    <p>Email：mis@mail.ncyu.edu.tw</p>
+    <p>地址：(600)嘉義市新民路580號A棟3樓</p>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+/* 預算頁面專屬樣式 */
+
+body {
+    background-color: white !important;
+}
+
+.container {
+    width: 100%;       /* 從 90% 改為 100% */
+    max-width: none;    /* 移除最大寬度限制 */
+    margin: 0;          /* 移除上下左右的外距 */
+    background-color: #fff;
+    padding: 20px 5%;   /* 增加左右內距，防止文字貼齊螢幕邊緣 */
+    box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
+}
+
+
+
+.subtitle {
+    text-align: center;
+    color: #B08D75;
+    margin-bottom: 40px;
+}
+
+/* 為了讓景點卡片看起來不要太寬，可以單獨限制卡片內容的最大寬度，或是讓它維持撐滿 */
+.attraction-card {
+    display: flex;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid #eee;
+    gap: 40px;
+    width: 100%;
+}
+
+.image-box {
+    flex: 0 0 450px;
+}
+
+.image-box img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.info-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  /* 若要整體內容靠左對齊，僅文字內部置中 */
+    justify-content: center;
+    padding-left: 20px;       /* 與圖片保持距離 */
+}
+
+/* 修正標題標籤與字體置中 */
+.tag-title {
+    background-color: #B08D75;
+    color: white;
+    padding: 10px 0;         /* 上下內距 */
+    width: 60%;              /* 設定固定寬度 */
+    max-width: 400px;
+    border-radius: 30px;
+    display: block;          /* 改為 block 方便對齊 */
+    text-align: center;      /* 文字水平置中 */
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* 票價選項樣式 */
+.price-item {
+    margin: 12px 0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.price-item::before {
+    content: "◎";
+    margin-right: 10px;
+}
+
+.price-item:hover {
+    color: #8B5A2B;
+}
+
+/* 選中狀態顏色 (如圖片所示) */
+.price-item.active {
+    color: #cc4a2d; 
+    font-weight: bold;
+}
+
+/* 加入行程按鈕 - 基礎設定與預設狀態 (第一張圖) */
+.add-btn {
+    align-self: flex-end;    /* 靠右對齊 */
+    background-color: #f0f0f0; /* 預設淺灰色背景 */
+    color: #B08D75;           /* 預設咖啡色文字 */
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    
+    /* 關鍵：利用 margin-top 確保它在底部 */
+    margin-top: auto; 
+    margin-bottom: 10px;
+}
+
+/* 鼠標移動到按鈕後後的狀態 (第二張圖) */
+.add-btn:hover {
+    background-color: #B08D75; /* 變為咖啡色背景 */
+    color: #ffffff;           /* 變為白色文字 */
+}
+
+/* 咖啡色分隔線樣式 */
+.divider {
+    border: none;
+    height: 2px;               /* 線條粗細 */
+    background-color: #8B5A2B; /* 咖啡色 */
+    margin: 30px 0;            /* 上下間距 */
+    width: 100%;               /* 寬度撐滿 */
+}
+
+/* 確保景點清單內的每個 section 底部都有線，除了最後一個 */
+#attraction-list .attraction-card {
+    border-bottom: 2px solid #8B5A2B; /* 景點區塊間的咖啡線 */
+    padding: 30px 0;
+}
+
+/* 如果最後一個景點後不需要重複線條（因為後面有 hr），可以加上這行 */
+#attraction-list .attraction-card:last-child {
+    border-bottom: none;
+}
+
+/* 調整底部計算區域也撐滿 */
+.calculation-area {
+    padding: 20px 5%;   /* 與上方 container 同步 */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.total-text {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.clear-btn {
+    background-color: #B08D75;
+    color: white;
+    border: none;
+    padding: 5px 25px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.instruction {
+    color: #cc4a2d;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.instruction-example {
+    color: #cc4a2d;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+footer .contact-info {
+    padding: 50px 0;
+    line-height: 1.8;
+}
+/* 行程標籤樣式 */
+/* 基礎標籤樣式 (請確保這段在 .route-tag:hover 之前) */
+.route-tag {
+    display: inline-block;
+    background-color: #f5f5f5; /* 淺灰背景 */
+    color: #8B5A2B;           /* 咖啡色字 */
+    padding: 5px 15px;         /* 增加內距讓標籤變大 */
+    margin: 5px;               /* 標籤間距 */
+    border-radius: 20px;       /* 圓角 */
+    border: 1px solid #B08D75;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+/* 鼠標移上去變色 */
+.route-tag:hover {
+    background-color: #cc4a2d !important; /* 加入 !important 確保強制換色 */
+    color: white !important;
+    border-color: #cc4a2d !important;
+}
+
+/* 顯示 ✕ 符號 */
+.route-tag::after {
+    content: " ✕"; 
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: bold;
+}

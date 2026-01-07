@@ -1,0 +1,168 @@
+/* style.css */
+body { 
+    margin: 0;
+    font-family: "Microsoft JhengHei", sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: #8B5A2B;
+}
+
+.top-bar {
+    background-color: #8B5A2B;
+    color: #ddd;
+    text-align: right;
+    padding: 5px 32px; /* 增加上下內距 */
+    font-size: 0.6rem;
+}
+
+.top-bar a {
+    font-size: 16px; 
+    color: #ddd;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+header {
+    height: 90px !important;
+    display: flex !important;
+    background-color: #8B5A2B;
+    color: white;
+    padding: 0 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+}
+
+/* 修正 Logo 區域 */
+.logo-area {
+    display: flex !important;
+    align-items: center !important;
+    width: 300px !important;
+    flex-shrink: 0;
+}
+
+.logo-area h2 {
+    font-size: 28px !important;
+    margin: 0;
+    white-space: nowrap;
+}
+
+header img {
+    height: 70px;
+    width: auto;
+    margin-right: 15px;
+}
+
+/* 導覽列文字加大加粗 */
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* 導覽列整體設定 */
+nav li {
+    font-size: 26px !important;
+    position: relative;
+    margin-right: 30px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold; /* 讓「太保簡介」等主選單文字變粗 */
+    padding-bottom: 5px; 
+}
+
+/* 保留底線設計：滑鼠移上去時顯示底線 */
+nav li::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #ffd6a0; /* 底線顏色 */
+    left: 0;
+    bottom: 0px;
+    transition: 0.3s;
+}
+
+nav li:hover::after {
+    width: 100%; /* 觸發底線長出來 */
+}
+
+/* 下拉選單：強制「不要」粗體 */
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: 120%;
+    left: 0;
+    min-width: 160px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 10;
+    border-radius: 4px;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px 15px;
+    color: black !important; /* 下拉選單字要黑色 */
+    font-size: 18px !important;
+    text-decoration: none;
+    font-weight: normal !important;
+}
+.dropdown a:hover {
+    background-color: #f5f5f5;
+    text-decoration: underline; /* 下拉選單改用內建底線即可 */
+}
+nav li:hover .dropdown {
+    display: block;
+}
+.dropdown::before {
+    content: "";
+    position: absolute;
+    top: -20px; /* 向上延伸出一段透明感應區 */
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+footer {
+    background-color: #8B5A2B;
+    color: white;
+    text-align: center;
+
+}   
+.section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 30px;
+            background-color: #8B5A2B;
+            margin-right: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 1.5rem;
+            color: #333;
+        } 
+
+ html {
+    scroll-behavior: smooth; /* 讓捲動更平滑 */
+}
+.attraction-card {
+    scroll-margin-top: 110px; 
+}

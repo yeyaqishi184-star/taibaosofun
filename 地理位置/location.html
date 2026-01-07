@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地理位置 - 太保旅遊去</title>
+    <link rel="stylesheet" href="commonstyle.css"> 
+    <link rel="stylesheet" href="location_style.css">
+</head>
+<body>
+
+    <div class="sticky-wrapper">   
+        </div>
+
+    <main class="container">
+        <div class="section-title"><h2>地理位置</h2></div>
+
+        <div class="map-section" style="text-align: center;">
+            <div id="map-wrapper" style="position: relative; display: inline-flex; margin: 0 auto;">
+                <img src="嘉義縣圖-太保.png" usemap="#image-map" id="main-map" alt="地圖">
+                
+                <map name="image-map" id="image-map">
+                    <area alt="太保市" href="javascript:void(0)" onclick="switchToTaibao();" 
+                          onmouseover="showTooltip(event, '點擊放大查看太保市')" onmouseout="hideTooltip()"
+                          coords="405,495,399,512,403,548,410,597,461,599,503,612,539,607,542,553,569,539,588,535,606,535,623,520,627,499,614,485,614,462,620,451,639,442,646,426,617,426,600,426,587,434,577,442,560,427,538,424,528,427,519,432,486,428,475,447,462,479,440,489" shape="poly">
+                </map>
+
+                <map name="taibao-detail-map" id="taibao-detail-map">
+                    <area alt="故宮南院" href="javascript:void(0)" onclick="goToAttraction('故宮南院', '../-景點詳介/intro_museum.html');" 
+                          onmouseover="showTooltip(event, '故宮南院')" onmouseout="hideTooltip()" coords="793,188,786,195,771,202,763,208,747,210,729,210,710,203,689,203,672,208,672,218,677,234,693,294,678,294,674,305,667,312,685,318,709,319,739,321,774,324,829,324,855,324,958,323,1037,316,1041,304,1029,291,1042,285,1047,270,1022,210,999,215,971,218,945,218,912,211,896,200,882,192,864,194,837,195,817,189,805,189" shape="poly">
+                    <area alt="咩咩上樹" href="javascript:void(0)" onclick="goToAttraction('咩咩上樹', '../-景點詳介/intro_meemee.html');" 
+                          onmouseover="showTooltip(event, '咩咩上樹')" onmouseout="hideTooltip()" coords="647,371,635,381,637,396,621,409,599,415,588,398,577,390,569,395,559,408,551,415,551,428,532,435,515,441,504,449,494,465,475,485,467,495,470,509,464,530,462,546,454,562,473,579,545,587,596,586,812,578,834,574,844,566,831,546,825,524,825,498,812,485,785,460,761,466,767,450,769,435,736,427,744,414,729,411,723,392,710,393,704,412,691,415,672,409,659,398,653,377" shape="poly">
+                    <area alt="品皇咖啡" href="javascript:void(0)" onclick="goToAttraction('品皇咖啡', '../-景點詳介/intro_cofe.html');" 
+                          onmouseover="showTooltip(event, '品皇咖啡')" onmouseout="hideTooltip()" coords="964,595,941,598,933,611,944,625,929,627,917,646,937,658,920,666,902,674,885,649,856,628,842,639,825,633,810,646,813,658,820,676,829,689,778,677,764,695,756,719,756,739,755,749,763,760,783,771,869,779,941,779,983,778,1053,773,1101,766,1136,757,1130,743,1138,712,1130,698,1107,679,1082,681,1066,692,1083,662,1087,639,1041,631,1009,649,993,665,964,658,980,633,969,607" shape="poly">
+                    <area alt="福濟宮" href="javascript:void(0)" onclick="goToAttraction('福濟宮', '../-景點詳介/intro_fuji.html');" 
+                          onmouseover="showTooltip(event, '福濟宮')" onmouseout="hideTooltip()" coords="1219,327,1190,317,1165,317,1150,325,1142,344,1123,349,1107,354,1104,335,1087,346,1082,365,1079,378,1066,389,1068,409,1079,425,1091,432,1099,444,1090,449,1069,457,1061,479,1064,495,1058,514,1053,527,1047,545,1072,554,1107,560,1145,560,1188,560,1242,560,1295,556,1393,548,1396,535,1385,516,1381,494,1377,471,1374,454,1346,448,1349,435,1366,414,1373,389,1369,376,1362,354,1342,332,1327,338,1331,347,1315,349,1303,344,1288,330,1284,312,1266,319,1249,319,12

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>太保怎麼玩</title>
+<link rel="stylesheet" href="commonstyle.css">
+</head>
+    <style>
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap; /* 避免 Logo 換行 */
+        }
+
+        /* 綠色修正：補齊右側選單功能 */
+        
+        /* --- 主要內容區塊 --- */
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1; /* 讓內容區撐開，把 Footer 壓到底部 */
+        }
+
+        /* --- 區塊標題 (左側直條樣式) --- */
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 30px;
+            background-color: #8B5A2B;
+            margin-right: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+
+        /* --- 景點卡片 --- */
+        .attraction-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            margin-bottom: 60px;
+            gap: 40px;
+            padding: 25px; /* 增加內距讓畫面更舒服 */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .attraction-card.reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* --- 圖片區域 --- */
+        .card-image {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: center; /* 讓圖片容器置中 */
+        }
+
+        .card-image img {
+            width: 100%;
+            max-width: 600px; /* 限制圖片最大寬度，避免過大 */
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- 文字區域 --- */
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 紅色修正：標題置中 */
+        .card-title {
+            font-size: 1.5rem;
+            color: #8B5A2B;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            padding-left: 100px;
+            padding-right: 100px;
+            /* 置中關鍵設定 */
+            align-self: center; 
+            text-align: center;
+        }
+
+        /* 藍色修正：文字加粗 */
+        .card-text {
+            text-align: justify;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: #555;
+            font-weight: 700; /* 加粗設定 */
+            line-height: 1.8; /* 行距稍微加大讓粗體字更好讀 */
+        }
+
+
+        /* --- 按鈕樣式 --- */
+
+        .quiz-btn 
+        {
+        background-color: #A67B5B;
+        color: white;
+        border: none;
+        /* 1. 增加左右內距 (Padding)，讓按鈕變寬一點 */
+        padding: 12px 80px; 
+        font-size: 1.1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s;
+        text-decoration: none;
+        
+        /* 2. 保持 auto 寬度，由 padding 決定視覺寬度 */
+        display: inline-block; 
+        width: auto; 
+        
+        /* 3. 置中關鍵：在 Flex 容器中水平置中 */
+        display: block;      /* 轉為區塊元素 */
+        margin: 20px auto 0; /* 利用左右 auto 達成水平置中 */
+        width: fit-content;  /* 寬度剛好包裹內容+Padding */
+        
+        text-align: center;
+        letter-spacing: 10px; 
+        }
+
+        .quiz-btn:hover {
+
+            background-color: #8b6b52;
+
+        }
+        .quiz-btn:active {
+
+            transform: scale(0.98);
+
+        }
+        /* --- RWD 手機版適配 --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .attraction-card, 
+            .attraction-card.reverse {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            .card-image img {
+                height: 200px;
+                width: 100%;
+            }
+            .card-title {
+                width: 100%; /* 手機版標題滿版置中 */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="sticky-wrapper">   
+    <div class="top-bar">
+        <a href="../首頁/index.html">回首頁</a><a href="#">回最上方</a>
+    </div>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="吉祥物.png" alt="吉祥物" style="height: 80px; margin-right: 10px; margin-bottom: 5px;">  
+        <h2 style="font-size: 28px;">太保旅遊</h2>
+    </div>   
+    <nav>
+        <ul>
+            <li>
+                <a href="../太保簡介/taibaointro.html" style="color:white; text-decoration:none;">
+                太保簡介</a>
+            </li>
+            <li>
+                <a href="../太保怎麼玩/h2ptaibao.html" style="color:white; text-decoration:none;">
+                太保怎麼玩</a>
+            </li>
+            <li>
+              <a href="../地理位置/location.html" style="color:white; text-decoration:none;">
+              地理位置</a>
+            </li>
+            <li>
+                <a href="../傳說與民俗/taibaotraditions.html" style="color:white; text-decoration:none;">
+                傳說與民俗</a>
+            </li>
+            <li>
+              <a href="../預算估計/budget.html" style="color:white; text-decoration:none;">
+              預算估計</a>
+            </li>       
+            <li>
+                <a href="../宗教信仰/taibaogod.html" style="color:white; text-decoration:none;">
+                宗教信仰</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+</div> 
+    <main class="container">
+        
+        <div class="section-title">
+            <h2>太保怎麼玩</h2>
+        </div>
+
+        <article class="attraction-card">
+            <a href="../-景點詳介/intro_museum.html" class="card-image" title="點擊查看詳細介紹">
+                <img src="故宮南院.jpg" alt="國立故宮南院">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">國立故宮南院</h3>
+                
+                <p class="card-text">
+國立故宮南院,是一座以「亞洲藝術文化」為主題的國家級博物館。相較於臺北故宮偏重中華文物,南院更強調跨文化視角,也適合學生以輕鬆的方式認識亞洲不同文明之間的交流與影響,也是一個結合學習與放鬆的旅遊景點。
+                </p>
+                
+                <a href="../-明信片/postcard_museum.html" class="quiz-btn">獲取明信片吧！</a>
+            </div>
+        </article>
+
+        <article class="attraction-card reverse">
+            <a href="../-景點詳介/intro_fuji.html" class="card-image" title="點擊查看詳細介紹">
+                <img src="福濟宮.jpg" alt="太保福濟宮">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">太保福濟宮</h3>
+                
+                <p class="card-text">
+                    太保福濟宮,是太保重要的在地信仰中心,主祀開臺媽祖。對大學生與年輕旅客而言,這裡不只是拜拜的地方,更是一個能快速認識地方文化、感受臺灣民間信仰如何融入生活的景點,適合輕旅行中順道走訪。
+                </p>
+                
+                <a href="../-明信片/postcard_fuji.html" class="quiz-btn">獲取明信片吧！</a>
+            </div>
+        </article>
+
+        <article class="attraction-card">
+            <a href="../-景點詳介/intro_meemee.html" class="card-image" title="點擊查看詳細介紹">
+                <img src="%E5%92%A9%E5%92%A9%E4%B8%8A%E6%A8%B9.jpg" alt="咩咩上樹萌寵樂園">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">咩咩上樹萌寵樂園</h3>
+                
+                <p class="card-text">
+                    咩咩上樹萌寵樂園是一處以動物互動與放鬆體驗為主的觀光景點,整體氛圍輕鬆療癒,也適合學生在課業或行程之間安排一段沒有壓力的行程。透過與動物近距離接觸,讓人暫時放慢步調,單純享受可愛與自然。
+                </p>
+                
+                <a href="../-明信片/postcard_meemee.html" class="quiz-btn">獲取明信片吧！</a>
+            </div>
+        </article>
+
+        <article class="attraction-card reverse">
+            <a href="../-景點詳介/intro_cofe.html" class="card-image" title="點擊查看詳細介紹">
+                <img src="咖啡工廠.jpg" alt="品皇咖啡觀光工廠">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">品皇咖啡觀光工廠</h3>
+                
+                <p class="card-text">
+                    觀光工廠透過展示與說明,介紹咖啡的產地來源、烘焙程度與風味差異,讓平時接觸咖啡飲品的學生,進一步理解咖啡背後的製作與文化脈絡。這些內容不需要專業背景,也能輕鬆吸收,更對日常飲品多了一層認識。
+                </p>
+                
+                <a href="../-明信片/postcard_cofe.html" class="quiz-btn">獲取明信片吧！</a>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <h3>Contact Us</h3>
+        <p>地址：嘉義縣太保市太保一路1號</p>
+        <p>電話：05-123-4567 | Email: service@taibao.travel</p>
+        <p>&copy; 2024 太保旅遊去 All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

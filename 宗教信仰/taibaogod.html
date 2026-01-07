@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>宗教信仰</title>
+<link rel="stylesheet" href="commonstyle.css">
+<style>
+.container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1; /* 讓內容區撐開，把 Footer 壓到底部 */
+        }
+
+nav li:hover .dropdown {
+    display: block;
+}
+.dropdown::before {
+    content: "";
+    position: absolute;
+    top: -20px; /* 向上延伸出一段透明感應區 */
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+/* --- 景點卡片 --- */
+        .attraction-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            margin-bottom: 60px;
+            gap: 40px;
+            padding: 30px; /* 增加內距讓畫面更舒服 */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .attraction-card.reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* --- 圖片區域 --- */
+        .card-image {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: center; /* 讓圖片容器置中 */
+        }
+
+        .card-image img {
+            width: 100%;
+            max-width: 400px; /* 限制圖片最大寬度，避免過大 */
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- 文字區域 --- */
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 紅色修正：標題置中 */
+        .card-title {
+            font-size: 1.5rem;
+            color: #8B5A2B;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            padding-left: 100px;
+            padding-right: 100px;
+            /* 置中關鍵設定 */
+            align-self: center; 
+            text-align: center;
+        }
+
+        /* 藍色修正：文字加粗 */
+        .card-text {
+            text-align: justify;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: #555;
+            font-weight: 700; /* 加粗設定 */
+            line-height: 1.8; /* 行距稍微加大讓粗體字更好讀 */
+            padding-right: 20px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 30px;
+            background-color: #8B5A2B;
+            margin-right: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+.mascot {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.mascot img {
+    width: 1600px;
+}
+
+.section-title 
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+ footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: auto; /* 確保置底 */
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            color: #8b6b52;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 5px;
+        }    
+</style>
+</head>
+<body>
+<div class="sticky-wrapper">   
+    <div class="top-bar">
+        <a href="../首頁/index.html">回首頁</a><a href="#">回最上方</a>
+    </div>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="吉祥物.png" alt="吉祥物" style="height: 80px; margin-right: 10px; margin-bottom: 5px;">  
+        <h2 style="font-size: 28px;">太保旅遊</h2>
+    </div>   
+    <nav>
+        <ul>
+            <li>
+                <a href="../太保簡介/taibaointro.html" style="color:white; text-decoration:none;">
+                太保簡介</a>
+            </li>
+            <li>
+                <a href="../太保怎麼玩/h2ptaibao.html" style="color:white; text-decoration:none;">
+                太保怎麼玩</a>
+            </li>
+            <li>
+              <a href="../地理位置/location.html" style="color:white; text-decoration:none;">
+              地理位置</a>
+            </li>
+            <li>
+                <a href="../傳說與民俗/taibaotraditions.html" style="color:white; text-decoration:none;">
+                傳說與民俗</a>
+            </li>
+            <li>
+              <a href="../預算估計/budget.html" style="color:white; text-decoration:none;">
+              預算估計</a>
+            </li>       
+            <li>
+                <a href="../宗教信仰/taibaogod.html" style="color:white; text-decoration:none;">
+                宗教信仰</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+</div>
+    <main class="container">
+        
+        <div class="section-title">
+            <h2>宗教信仰</h2>
+        </div>
+
+        <article class="attraction-card">
+            <a href="detail_museum.html" class="card-image" title="點擊查看詳細介紹">
+                <img src="七星娘娘.jpg" alt="七星娘娘信仰">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">七星娘娘信仰</h3>
+                
+                <p class="card-text">
+                    七星娘娘信仰源自民間對北斗七星的崇敬,象徵星宿運行與人生際遇之間的連結。早期社會相信
+天地星象會影響人間,因此透過祭祀七星娘娘,表達對自然秩序的敬畏與尊重。這也展現人們在
+面對生活變化時,尋求心靈安定與指引的方式。
+                </p>
+            </div>
+        </article>
+
+        <article class="attraction-card reverse">
+            <a href="detail_temple.html" class="card-image" title="點擊查看詳細介紹">
+                <img src="牛將軍廟.jpg" alt="牛將軍廟">
+            </a>
+
+            <div class="card-content">
+                <h3 class="card-title">牛將軍廟</h3>
+                
+                <p class="card-text">
+                 牛將軍廟是太保地區具有地方特色的廟宇,主祀牛將軍神祇,象徵勤勞與守護農田平安。廟宇活
+動常與在地農業節慶相關,居民會前來祈求豐收與平安。參觀牛將軍廟,不僅能感受傳統信仰,
+也能理解太保農村文化與居民生活緊密結合的方式。
+                </p>
+                
+                
+            </div>
+        </article>
+
+    </main>  
+     <footer>
+        <h3>Contact Us</h3>
+        <p>地址：嘉義縣太保市太保一路1號</p>
+        <p>電話：05-123-4567 | Email: service@taibao.travel</p>
+        <p>&copy; 2024 太保旅遊去 All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

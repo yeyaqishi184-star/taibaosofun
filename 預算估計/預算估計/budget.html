@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預算估計 - 太保旅遊去</title>
+    <link rel="stylesheet" href="commonstyle.css">
+    <link rel="stylesheet" href="budget_style.css">
+</head>
+<body>
+
+  <div class="sticky-wrapper">   
+    <div class="top-bar">
+        <a href="../首頁/index.html">回首頁</a><a href="#">回最上方</a>
+    </div>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="吉祥物.png" alt="吉祥物" style="height: 80px; margin-right: 10px; margin-bottom: 5px;">  
+        <h2 style="font-size: 28px;">太保旅遊</h2>
+    </div>   
+    <nav>
+        <ul>
+            <li>
+                <a href="../太保簡介/taibaointro.html" style="color:white; text-decoration:none;">
+                太保簡介</a>
+            </li>
+            <li>
+                <a href="../太保怎麼玩/h2ptaibao.html" style="color:white; text-decoration:none;">
+                太保怎麼玩</a>
+            </li>
+            <li>
+              <a href="../地理位置/location.html" style="color:white; text-decoration:none;">
+              地理位置</a>
+            </li>
+            <li>
+                <a href="../傳說與民俗/taibaotraditions.html" style="color:white; text-decoration:none;">
+                傳說與民俗</a>
+            </li>
+            <li>
+              <a href="../預算估計/budget.html" style="color:white; text-decoration:none;">
+              預算估計</a>
+            </li>       
+            <li>
+                <a href="../宗教信仰/taibaogod.html" style="color:white; text-decoration:none;">
+                宗教信仰</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+</div>  
+
+    <main class="container">
+        <div class="section-title">
+            <h2>預算估計</h2>
+        </div>
+        <div class="subtitle">勾取所需票價，快速記入行程，計算費用</div>
+        <hr class="divider">
+
+        <div id="attraction-list">
+            <section class="attraction-card" data-name="國立故宮南院">
+                <div class="image-box">
+                    <img src="故宮南院.jpg" alt="故宮南院">
+                </div>
+                <div class="info-box">
+                    <div class="tag-title">國立故宮南院</div>
+                    <div class="price-options">
+                        <div class="price-item" data-price="0">學生價：免費</div>
+                        <div class="price-item" data-price="150">成人價：150元</div>
+                        <div class="price-item" data-price="0">兒童價：免費</div>
+                    </div>
+                    <button class="add-btn">加入行程</button>
+                </div>
+            </section>
+
+            <section class="attraction-card" data-name="太保福濟宮">
+                <div class="image-box">
+                    <img src="福濟宮.jpg" alt="太保福濟宮">
+                </div>
+                <div class="info-box">
+                    <div class="tag-title">太保福濟宮</div>
+                    <div class="price-options">
+                        <div class="price-item active" data-price="0">免費參觀</div>
+                    </div>
+                    <button class="add-btn">加入行程</button>
+                </div>
+            </section>
+
+            <section class="attraction-card" data-name="咩咩上樹萌寵樂園">
+                <div class="image-box">
+                    <img src="咩咩上樹.jpg" alt="咩咩上樹">
+                </div>
+                <div class="info-box">
+                    <div class="tag-title">咩咩上樹萌寵樂園</div>
+                    <div class="price-options">
+                        <div class="price-item" data-price="199">全票：199元</div>
+                        <div class="price-item" data-price="159">嘉義縣民票：159元</div>
+                        <div class="price-item" data-price="79">兒童價：79元</div>
+                    </div>
+                    <button class="add-btn">加入行程</button>
+                </div>
+            </section>
+
+            <section class="attraction-card" data-name="品皇咖啡觀光工廠">
+                <div class="image-box">
+                    <img src="咖啡工廠.jpg" alt="品皇咖啡">
+                </div>
+                <div class="info-box">
+                    <div class="tag-title">品皇咖啡觀光工廠</div>
+                    <div class="price-options">
+                        <div class="price-item active" data-price="0">免費參觀</div>
+                    </div>
+                    <button class="add-btn">加入行程</button>
+                </div>
+            </section>
+        </div>
+
+        <hr class="divider">
+        <div class="calculation-area">
+            <p id="status-hint">請選擇要買的票價並加入行程，總行程：無，總費用：0元</p>
+            <p><strong>總行程規劃：</strong><span id="route-display">無</span></p>
+            
+            <div class="total-row">
+                <span class="total-text">↗ 計算總費用：<span id="total-price">0</span> 元</span>
+                <button id="clear-all" class="clear-btn">全部清除</button>
+            </div>
+            
+            <!-- <p class="instruction">按下 [加入行程] 會在 [總行程規劃] 中新增景點名稱，並在下方 [計算總費用] 中顯示總計算數</p> -->
+            <!-- <p class="instruction-example">此範例為故宮成人價150元+太保免費+咩咩兒童價79元+品皇免費的結果</p> -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="contact-info">
+            <h3>Contact Us</h3>
+            <p>地址：600嘉義市西區新民路580號</p>
+            <p>聯絡電話：05 271 7000</p>
+            <p>聯絡信箱：Taibao.chayi.tour@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="budget_script.js"></script>
+
+    <div id="toast" style="display:none; position:fixed; bottom:20px; right:20px; background:#8B5A2B; color:white; padding:10px 20px; border-radius:5px; z-index:9999;">
+    加入行程成功！
+    </div>
+</body>
+</html>
